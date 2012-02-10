@@ -56,6 +56,16 @@ module Sunspot
       #   a pizza" will not. Default behavior is a query phrase slop of zero.
       #
       def fulltext(keywords, options = {}, &block)
+        puts
+        puts
+        puts
+        puts
+        puts
+        puts
+        puts "---------------------------------------"
+        puts keywords
+        puts options
+        puts block
         if keywords && !(keywords.to_s =~ /^\s*$/)
           fulltext_query = @query.add_fulltext(keywords)
           if field_names = options.delete(:fields)
