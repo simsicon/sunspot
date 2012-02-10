@@ -42,6 +42,8 @@ module Sunspot
       def execute
         reset
         params = @query.to_params
+        puts "@connection.inspect"
+        puts @connection.inspect
         @solr_result = @connection.post "#{request_handler}", :data => params
         self
       end
