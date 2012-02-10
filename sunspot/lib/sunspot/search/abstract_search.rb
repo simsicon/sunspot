@@ -259,7 +259,7 @@ module Sunspot
       end
   
       def paginate_collection(collection)
-        puts collection.input
+        puts collection.inspect
         PaginatedCollection.new(collection, @query.page, @query.per_page, total)
       end
   
