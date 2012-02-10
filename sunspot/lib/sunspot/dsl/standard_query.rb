@@ -66,7 +66,6 @@ module Sunspot
         puts keywords
         puts options
         puts block
-        puts File.expand_path('./standard_query.rb')
         if keywords && !(keywords.to_s =~ /^\s*$/)
           fulltext_query = @query.add_fulltext(keywords)
           if field_names = options.delete(:fields)
@@ -85,6 +84,8 @@ module Sunspot
           if query_phrase_slop = options.delete(:query_phrase_slop)
             fulltext_query.query_phrase_slop = query_phrase_slop.to_i
           end
+          puts fulltext_query.inspect
+          fulltext_query
           if highlight_field_names = options.delete(:highlight)
             if highlight_field_names == true
               fulltext_query.add_highlight
@@ -96,6 +97,8 @@ module Sunspot
               fulltext_query.add_highlight(highlight_fields)
             end
           end
+          puts fulltext_query.inspect
+          fulltext_query
           if block && fulltext_query
             fulltext_dsl = Fulltext.new(fulltext_query, @setup)
             Util.instance_eval_or_call(
@@ -103,6 +106,8 @@ module Sunspot
               &block
             )
           end
+          puts fulltext_query.inspect
+          fulltext_query
           if !field_names && (!fulltext_dsl || !fulltext_dsl.fields_added?)
             @setup.all_text_fields.each do |field|
               unless fulltext_query.has_fulltext_field?(field)
@@ -112,6 +117,8 @@ module Sunspot
               end
             end
           end
+          puts fulltext_query.inspect
+          fulltext_query
         end
       end
       alias_method :keywords, :fulltext
