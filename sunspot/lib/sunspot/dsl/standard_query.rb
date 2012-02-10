@@ -66,6 +66,7 @@ module Sunspot
         puts keywords
         puts options
         puts block
+        puts File.expand_path('./standard_query.rb')
         if keywords && !(keywords.to_s =~ /^\s*$/)
           fulltext_query = @query.add_fulltext(keywords)
           if field_names = options.delete(:fields)
