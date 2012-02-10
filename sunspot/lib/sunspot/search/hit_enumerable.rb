@@ -5,6 +5,8 @@ module Sunspot
         if options[:verify]
           verified_hits
         elsif solr_docs
+          puts "solr_docs.inspect"
+          puts solr_docs.inspect
           solr_docs.map { |d| Hit.new(d, highlights_for(d), self) }
         else
           []
